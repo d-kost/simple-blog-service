@@ -1,15 +1,20 @@
 import React from 'react';
 import './App.css';
-import BlogPostListContainer from './containers/BlogPostListContainer';
-import AddBlogPost from './containers/AddBlogPost';
-import PageHeader from './containers/PageHeader';
+import HomePage from './components/HomePage';
+import RegistrationPage from './components/RegistrationPage';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <PageHeader/>
-      <AddBlogPost />
-      <BlogPostListContainer />
+      <Switch>
+        <Route path='/registration'>
+          <RegistrationPage />
+        </Route>
+        <Route path='/'>
+          <HomePage />
+        </Route>
+      </Switch>
     </div>
   );
 }
