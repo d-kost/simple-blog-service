@@ -6,8 +6,9 @@ import PageHeaderDetails from '../components/PageHeaderDetails';
 import ModalPortal from '../components/modal/ModalPortal';
 import ModalWindow from '../components/modal/ModalWindow';
 import ProfileChange from '../components/modal/ProfileChange';
+import { setCurrentUser } from '../redux/actions/index';
 
-const PageHeader = ({ currentUser }) => {
+const PageHeader = ({ dispatch, currentUser }) => {
 
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -15,6 +16,11 @@ const PageHeader = ({ currentUser }) => {
   const openModal = () => {
     closeDetails();
     setShowModal(true);
+  }
+
+  const acceptModal = (nickname) => {
+    dispatch(setCurrentUser(nickname)); 
+    closeModal();
   }
 
   const closeModal = () => {
@@ -44,9 +50,10 @@ const PageHeader = ({ currentUser }) => {
         <ModalPortal>
           <ModalWindow
             onCancelClick={closeModal}
-            onAcceptClick={closeModal}
           >
-            <ProfileChange />
+            <ProfileChange
+              onAcceptClick={acceptModal}
+            />
           </ModalWindow>
         </ModalPortal>
       }

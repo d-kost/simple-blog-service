@@ -17,19 +17,12 @@ const ModalWindow = (props) => {
           Cancel
         </button>
 
-        <button
-          className='modal-window__button common-button'
-          onClick={() => props.onAcceptClick()}
-        >
-          Accept
-        </button>
       </div>
     </div>
   )
 }
 
 ModalWindow.propTypes = {
-  onAcceptClick: PropTypes.func,
   onCancelClick: PropTypes.func,
 }
 

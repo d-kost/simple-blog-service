@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 
-const ProfileChange = () => {
+const ProfileChange = ({ onAcceptClick }) => {
 
   // let { path, url } = useRouteMatch();
+  const [nickname, setNickname] = useState('');
 
   let history = useHistory();
 
@@ -12,12 +13,17 @@ const ProfileChange = () => {
     history.push('/registration');
   };
 
+  const onInputChange = (event) => {
+    setNickname(event.target.value);
+  }
+
   return (
     <BrowserRouter>
       <div>
-        <input type='text' />
+        <input type='text' value={nickname} onChange={onInputChange} />
 
         <button onClick={registrate}>Create new account</button>
+        <button onClick={() => onAcceptClick(nickname)}>Accept</button>
         {/* <Link to='/registration'>
           new
         <button onClick={closeModal}>Create new account</button>

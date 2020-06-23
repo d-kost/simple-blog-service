@@ -28,7 +28,7 @@ UserProfile.propTypes = {
 }
 
 const findUserByNickname = (users, nickname) => {
-  return users.find(user => user.nickname === nickname);
+  return users.find(user => user.nickname === nickname) || 'cat';
 }
 
 const mapStateToProps = (state, ownProps) => ({
