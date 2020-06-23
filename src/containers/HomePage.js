@@ -1,8 +1,8 @@
 import React from 'react';
-import BlogPostListContainer from '../containers/BlogPostListContainer';
-import AddBlogPost from '../containers/AddBlogPost';
-import PageHeader from '../containers/PageHeader';
-import UserProfile from '../containers/UserProfile';
+import BlogPostListContainer from './BlogPostListContainer';
+import AddBlogPost from './AddBlogPost';
+import PageHeader from './PageHeader';
+import UserProfile from './UserProfile';
 import { connect } from 'react-redux';
 
 const HomePage = ({ currentUserNickname }) => (

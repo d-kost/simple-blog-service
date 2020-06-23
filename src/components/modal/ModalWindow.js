@@ -7,17 +7,17 @@ const ModalWindow = (props) => {
   return (
     <div className="modal-window">
 
-      {props.children}
-
-      <div className="modal-window__bottom-panel">
+      <div className='modal-window__top-line'>
         <button
-          className='modal-window__button common-button'
+          className='modal-window__close-button'
           onClick={props.onCancelClick}
         >
-          Cancel
-        </button>
-
+          &#10006;
+      </button>
       </div>
+
+      {props.children}
+
     </div>
   )
 }
