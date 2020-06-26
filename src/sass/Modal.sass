@@ -9,6 +9,8 @@
     z-index: 99999
 
     &-window
+        display: flex
+        flex-direction: column
         background: #fff
         margin: auto
         box-sizing: border-box
@@ -49,15 +51,26 @@
                 border-radius: 5px
 
 .user-change
+    flex-grow: 1
     width: 60%
-    height: 100%
     margin: 0 auto
     padding: 10px 0
     display: flex
     flex-direction: column
-    &__input
-        height: 35px
-    &__button
+    overflow: auto
+    &__register
         cursor: pointer
         height: 35px
         margin-top: 5px
+
+.authorization
+    flex-grow: 1
+    overflow: auto
+    &__form
+        display: flex
+    &__input
+        height: 35px
+        flex-grow: 1
+    &__log-in
+        width: 80px
+        cursor: pointer

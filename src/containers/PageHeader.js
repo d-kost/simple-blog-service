@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import PageHeaderDetails from '../components/PageHeaderDetails';
 import ModalPortal from '../components/modal/ModalPortal';
 import ModalWindow from '../components/modal/ModalWindow';
-import ProfileChange from '../components/modal/ProfileChange';
+import ProfileChangeContainer from './modal/ProfileChangeContainer';
 import { setCurrentUser } from '../redux/actions/index';
 
 const PageHeader = ({ dispatch, currentUser }) => {
@@ -19,7 +19,7 @@ const PageHeader = ({ dispatch, currentUser }) => {
   }
 
   const acceptModal = (nickname) => {
-    dispatch(setCurrentUser(nickname)); 
+    dispatch(setCurrentUser(nickname));
     closeModal();
   }
 
@@ -38,7 +38,13 @@ const PageHeader = ({ dispatch, currentUser }) => {
   return (
     <header className='page-header'>
       <div className='page-header__title page-header__content'>Simple blog </div>
-      <div className='page-header__user page-header__content' onClick={toggleShowDetails}>{currentUser}</div>
+
+      <div className='page-header__user page-header__content'
+        onClick={toggleShowDetails}
+      >
+        {currentUser}
+      </div>
+
       {showDetails &&
         <PageHeaderDetails
           changeProfileHandleClick={openModal}
@@ -51,8 +57,8 @@ const PageHeader = ({ dispatch, currentUser }) => {
           <ModalWindow
             onCancelClick={closeModal}
           >
-            <ProfileChange
-              onAcceptClick={acceptModal}
+            <ProfileChangeContainer
+              onLoginClick={acceptModal}
             />
           </ModalWindow>
         </ModalPortal>

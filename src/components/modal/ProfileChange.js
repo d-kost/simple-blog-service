@@ -1,59 +1,78 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 import NicknameList from './NicknameList';
 import debounce from 'lodash/debounce';
 
-const ProfileChange = ({ onAcceptClick }) => {
+const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter }) => {
 
-  const [enteredNickname, setEnteredNickname] = useState('');
-  const [chosenUserNickname, setChosenUserNickname] = useState('');
+  const [enteredUser, setEnteredUser] = useState('');
+  // const [chosenUserNickname, setChosenUserNickname] = useState('');
+
+  useEffect(() => {
+    return () => {
+      //clear filter on unmount
+      setUserFilter('');
+    };
+  }, [setUserFilter]);
 
   let history = useHistory();
 
-  const registrate = () => {
+  const register = () => {
     history.push('/registration');
   };
 
   const onInputChange = (event) => {
-    setEnteredNickname(event.target.value);
-    console.log('1');
+    setEnteredUser(event.target.value);
     debouncedChange();
   }
 
+  //filter users by entered value
   const debouncedFunctionRef = useRef()
-  debouncedFunctionRef.current = () => seek();
+  debouncedFunctionRef.current = () => setUserFilter(enteredUser);
 
   const debouncedChange = useCallback(debounce(
     (...args) => debouncedFunctionRef.current(...args),
     1000,
   ), []);
 
-  const seek = () => {
-    console.log('seek');
-  }
+  const onClickNickname = useCallback((nickname) => {
 
-  const onClickNickname = (nickname) => {
-    setChosenUserNickname(nickname);
-  }
+    if (enteredUser !== nickname) {
+      setEnteredUser(nickname);
+      setUserFilter(nickname);
+    }
+    // setChosenUserNickname(nickname);
+  }, [enteredUser, setUserFilter])
 
   return (
     <BrowserRouter>
       <div className='user-change'>
-        <input className='user-change__input'
-          type='text' value={enteredNickname} onChange={onInputChange} />
 
-        <NicknameList
-          nicknames={[]}
-          onClickNickname={onClickNickname}
-        />
+        <div className='authorization'>
+          <div className='authorization__form'>
+            <input className='authorization__input'
+              type='text' value={enteredUser} onChange={onInputChange} />
 
+            <button className='authorization__log-in'
+              onClick={() => onLoginClick(enteredUser)}
+            >
+              Log in
+          </button>
+          </div>
 
-        <button className='user-change__button' onClick={registrate}>
+          <NicknameList
+            users={filteredUsers}
+            onClickNickname={onClickNickname}
+          />
+        </div>
+
+        <button className='user-change__register'
+          onClick={register}
+        >
           Create new account
         </button>
-        <button className='user-change__button' onClick={() => onAcceptClick(enteredNickname)}>
-          Accept
-        </button>
+
+
         {/* <Link to='/registration'>
           new
         <button onClick={closeModal}>Create new account</button>
