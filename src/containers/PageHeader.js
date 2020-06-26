@@ -7,11 +7,14 @@ import ModalPortal from '../components/modal/ModalPortal';
 import ModalWindow from '../components/modal/ModalWindow';
 import ProfileChangeContainer from './modal/ProfileChangeContainer';
 import { setCurrentUser } from '../redux/actions/index';
+import { useHistory } from 'react-router-dom';
 
 const PageHeader = ({ dispatch, currentUser }) => {
 
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  let history = useHistory();
 
   const openModal = () => {
     closeDetails();
@@ -21,6 +24,9 @@ const PageHeader = ({ dispatch, currentUser }) => {
   const acceptModal = (nickname) => {
     dispatch(setCurrentUser(nickname));
     closeModal();
+
+    const currentUserPagePath = `/${nickname}`;
+    history.push(currentUserPagePath);
   }
 
   const closeModal = () => {
@@ -47,6 +53,7 @@ const PageHeader = ({ dispatch, currentUser }) => {
 
       {showDetails &&
         <PageHeaderDetails
+          currentUserNickname={currentUser}
           changeProfileHandleClick={openModal}
           closeDetails={closeDetails}
         />

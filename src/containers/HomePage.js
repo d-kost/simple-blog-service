@@ -1,17 +1,12 @@
 import React from 'react';
-import BlogPostListContainer from './BlogPostListContainer';
-import AddBlogPost from './AddBlogPost';
+// import BlogPostListContainer from './BlogPostListContainer';
+// import AddBlogPost from './AddBlogPost';
 import PageHeader from './PageHeader';
-import UserProfile from './UserProfile';
+// import UserProfile from './UserProfile';
 import { connect } from 'react-redux';
 
-const HomePage = ({ currentUserNickname }) => (
-  <>
-    <PageHeader />
-    <UserProfile nickname={currentUserNickname} />
-    <AddBlogPost />
-    <BlogPostListContainer />
-  </>
+const HomePage = () => (
+  <PageHeader />
 )
 
 const mapStateToProps = (state) => ({

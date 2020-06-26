@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 import NicknameList from './NicknameList';
 import debounce from 'lodash/debounce';
+import PropTypes from 'prop-types';
 
 const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter }) => {
 
@@ -87,6 +88,19 @@ const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter }) => {
       </div>
     </BrowserRouter>
   )
+}
+
+ProfileChange.propTypes = {
+  filteredUsers: PropTypes.arrayOf(PropTypes.shape({
+    nickname: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    picture: PropTypes.string,
+    posts: PropTypes.arrayOf(PropTypes.number),
+  })),
+
+  onLoginClick: PropTypes.func,
+  setUserFilter: PropTypes.func
 }
 
 export default ProfileChange;

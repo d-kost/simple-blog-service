@@ -2,7 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const PageHeaderDetails = ({ changeProfileHandleClick, closeDetails }) => {
+const PageHeaderDetails = (
+  { currentUserNickname,
+    changeProfileHandleClick,
+    closeDetails }
+) => {
 
   const detailsRef = useRef(null);
 
@@ -19,16 +23,18 @@ const PageHeaderDetails = ({ changeProfileHandleClick, closeDetails }) => {
     }
   }, [closeDetails, detailsRef])
 
+  const myProfileLink = `/${currentUserNickname}`
+
   return (
     <div className='header-details' ref={detailsRef}>
       <ul className='header-details__list'>
 
         <li className='header-details__item'>
-          <Link className='header-details__link' to='/'>my profile</Link>
+          <Link className='header-details__link' to={myProfileLink}>my profile</Link>
         </li>
 
         <li className='header-details__item'>
-          <Link className='header-details__link' to='/'>edit profile</Link>
+          <Link className='header-details__link' to='/editProfile'>edit profile</Link>
         </li>
 
         <li
@@ -37,7 +43,7 @@ const PageHeaderDetails = ({ changeProfileHandleClick, closeDetails }) => {
         >
           change profile
         </li>
-        
+
       </ul>
     </div>
 
@@ -45,6 +51,7 @@ const PageHeaderDetails = ({ changeProfileHandleClick, closeDetails }) => {
 }
 
 PageHeaderDetails.propTypes = {
+  currentUserNickname: PropTypes.string,
   changeProfileHandleClick: PropTypes.func,
   closeDetails: PropTypes.func
 }

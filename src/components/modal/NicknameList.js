@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const NicknameList = ({ users, onClickNickname }) => {
 
@@ -21,6 +22,18 @@ const NicknameList = ({ users, onClickNickname }) => {
     </ul>
 
   )
+}
+
+NicknameList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
+    nickname: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    picture: PropTypes.string,
+    posts: PropTypes.arrayOf(PropTypes.number),
+  })),
+  
+  onClickNickname: PropTypes.func
 }
 
 export default React.memo(NicknameList);
