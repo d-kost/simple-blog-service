@@ -1,5 +1,5 @@
 import React from 'react';
-import PageHeader from '../containers/PageHeader';
+import PageHeader from '../../containers/PageHeader';
 
 const RegistrationPage = () => (
   <div>

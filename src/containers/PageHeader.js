@@ -41,9 +41,17 @@ const PageHeader = ({ dispatch, currentUser }) => {
     setShowDetails(false);
   }
 
+  const goToHomePage = () => {
+    history.push('/');
+  }
+
   return (
     <header className='page-header'>
-      <div className='page-header__title page-header__content'>Simple blog </div>
+      <div className='page-header__title page-header__content'
+        onClick={goToHomePage}
+      >
+        Simple blog
+      </div>
 
       <div className='page-header__user page-header__content'
         onClick={toggleShowDetails}
