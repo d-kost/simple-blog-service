@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addBlogPost } from '../redux/actions/index';
+import PropTypes from 'prop-types';
 
 const AddBlogPost = ({ dispatch, currentUser }) => {
 
@@ -14,7 +15,7 @@ const AddBlogPost = ({ dispatch, currentUser }) => {
   const handleFormSubmit = event => {
     event.preventDefault();
 
-    dispatch(addBlogPost(text, currentUser));
+    dispatch(addBlogPost(text, { nickname: currentUser.nickname, picture: currentUser.picture }));
     setText('');
   }
 
@@ -27,8 +28,17 @@ const AddBlogPost = ({ dispatch, currentUser }) => {
 
 }
 
+AddBlogPost.propTypes = {
+  currentUser: PropTypes.shape({
+    nickname: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    picture: PropTypes.string
+  })
+}
+
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.users.find(user => user.nickname === state.currentUserNickname)
 });
 
 export default connect(mapStateToProps)(AddBlogPost);

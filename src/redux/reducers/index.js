@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import blogPosts from './blogPosts';
-import currentUser from './currentUser';
+import currentUserNickname from './currentUserNickname';
 import users from './users';
 import userFilter from './userFilter';
 
 const rootReducer = combineReducers({
   blogPosts,
-  currentUser,
+  currentUserNickname,
   users,
   userFilter
 });

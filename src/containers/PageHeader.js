@@ -9,7 +9,7 @@ import ProfileChangeContainer from './modal/ProfileChangeContainer';
 import { setCurrentUser } from '../redux/actions/index';
 import { useHistory } from 'react-router-dom';
 
-const PageHeader = ({ dispatch, currentUser }) => {
+const PageHeader = ({ dispatch, currentUserNickname }) => {
 
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -56,12 +56,12 @@ const PageHeader = ({ dispatch, currentUser }) => {
       <div className='page-header__user page-header__content'
         onClick={toggleShowDetails}
       >
-        {currentUser}
+        {currentUserNickname}
       </div>
 
       {showDetails &&
         <PageHeaderDetails
-          currentUserNickname={currentUser}
+          currentUserNickname={currentUserNickname}
           changeProfileHandleClick={openModal}
           closeDetails={closeDetails}
         />
@@ -83,11 +83,11 @@ const PageHeader = ({ dispatch, currentUser }) => {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUserNickname: state.currentUserNickname
 })
 
 PageHeader.propTypes = {
-  currentUser: PropTypes.string
+  currentUserNickname: PropTypes.string
 }
 
 export default connect(mapStateToProps)(PageHeader);

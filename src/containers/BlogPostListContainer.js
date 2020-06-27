@@ -7,7 +7,7 @@ const filterBlogPosts = (blogPosts, userNickname, filter) => {
     case ALL:
       return blogPosts;
     case USER_FILTER:
-      return blogPosts.filter(post => post.author === userNickname);
+      return blogPosts.filter(post => post.author.nickname === userNickname);
     default:
       return blogPosts;
   }
