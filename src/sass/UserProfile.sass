@@ -1,7 +1,24 @@
 .user
     &-profile
         display: flex
+        padding:
+            top: 15px
+            bottom: 15px
+        border-bottom: 3px solid #dedede
     &-picture
-        width: 200px
-        height: 200px
+        width: 150px
+        height: 150px
         object-fit: cover
+        border-radius: 5px
+    &-info
+        flex-grow: 1
+        text-align: center
+        &__mark
+            font-size: 0.8em
+            font-weight: normal
+        &__fullname
+            font-size: 24px
+            font-weight: 600
+        &__nickname
+            font-size: 20px
+            font-weight: 600

@@ -11,8 +11,15 @@ const UserProfile = ({ user }) => {
       <img src={user.picture} alt={user.nickname} className='user-picture' />
 
       <div className='user-info'>
-        <p className='user-info__fullname'>{user.firstName} {user.lastName}</p>
-        <p className='user-info__fullname'>{user.nickname}</p>
+        <p className='user-info__fullname'>
+          <span className='user-info__mark'>full name: </span>
+          {user.firstName} {user.lastName}
+        </p>
+
+        <p className='user-info__nickname'>
+          <span className='user-info__mark'>nickname: </span>
+          {user.nickname}
+        </p>
       </div>
     </div>
 
