@@ -1,3 +1,5 @@
+export const GUEST_USER = 'GUEST_USER';
+
 const initUsers = [
   {
     nickname: 'cat',

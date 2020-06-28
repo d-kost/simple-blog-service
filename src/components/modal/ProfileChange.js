@@ -4,7 +4,7 @@ import NicknameList from './NicknameList';
 import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 
-const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter }) => {
+const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter, setGuestUser }) => {
 
   const [enteredUser, setEnteredUser] = useState('');
   // const [chosenUserNickname, setChosenUserNickname] = useState('');
@@ -19,6 +19,7 @@ const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter }) => {
   let history = useHistory();
 
   const register = () => {
+    setGuestUser();
     history.push('/registration');
   };
 

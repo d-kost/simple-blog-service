@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProfileChange from '../../components/modal/ProfileChange';
-import { setUserFilter } from '../../redux/actions/index';
+import { setUserFilter, setGuestUser } from '../../redux/actions/index';
 
 const filterUsers = (users, userFilter) => {
   const filter = userFilter.toLowerCase();
@@ -18,7 +18,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUserFilter: enteredUser => dispatch(setUserFilter(enteredUser))
+  setUserFilter: enteredUser => dispatch(setUserFilter(enteredUser)),
+  setGuestUser: () => dispatch(setGuestUser())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileChange);

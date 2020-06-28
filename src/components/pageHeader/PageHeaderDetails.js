@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 const PageHeaderDetails = (
   { currentUserNickname,
     changeProfileHandleClick,
-    closeDetails }
+    closeDetails,
+    logOutHandleClick }
 ) => {
 
   const detailsRef = useRef(null);
@@ -30,18 +31,35 @@ const PageHeaderDetails = (
       <ul className='header-details__list'>
 
         <li className='header-details__item'>
-          <Link className='header-details__link' to={myProfileLink}>my profile</Link>
+          <Link className='header-details__link'
+            to={myProfileLink}
+            onClick={closeDetails}
+          >
+            my profile
+            </Link>
         </li>
 
         <li className='header-details__item'>
-          <Link className='header-details__link' to='/editProfile'>edit profile</Link>
+          <Link className='header-details__link'
+            to='/editProfile'
+            onClick={closeDetails}
+          >
+            edit profile
+            </Link>
         </li>
 
         <li
           className='header-details__item'
           onClick={changeProfileHandleClick}
         >
-          change profile
+          change account
+        </li>
+
+        <li
+          className='header-details__item'
+          onClick={logOutHandleClick}
+        >
+          log out
         </li>
 
       </ul>
