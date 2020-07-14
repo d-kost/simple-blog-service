@@ -1,34 +1,47 @@
 import React, { useState, useRef, useCallback } from 'react';
 import debounce from 'lodash/debounce';
-import keywords from'../../js_modules/keywords';
+import keywords from '../../js_modules/keywords';
+import '../../sass/UserForm.sass';
+import TextInput from './TextInput';
+import { useHistory } from 'react-router-dom';
 
 const RegistrationForm = ({ nicknames, send }) => {
 
   const [nickname, setNickname] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
 
   const [isTaken, setIsTaken] = useState(false);
   const [isKeyword, setIsKeyword] = useState(false);
-  
+
+  const profilePic = useRef(null);
+  let history = useHistory();
 
   const sendNewInformation = (event) => {
     event.preventDefault();
     // if (!nickname.length || !firstName.length || !lastName.length) {
     //   return;
     // }
+    if (isTaken || isKeyword) {
+      return;
+    }
 
     send({
       nickname,
       firstName,
       lastName,
-      picture: `https://api.adorable.io/avatars/285/${nickname}.png`,
+      picture: profilePicture || `https://api.adorable.io/avatars/285/${nickname}.png`,
       posts: []
     })
+
+    const userPagePath = `/${nickname}`;
+    history.push(userPagePath);
   }
 
-  const enterNicknameHandler = (e) => {
-    setNickname(e.target.value);
+  const enterNicknameHandler = (value) => {
+    // setNickname(e.target.value);
+    setNickname(value);
     setIsTaken(false);
     setIsKeyword(false);
     debouncedChange();
@@ -54,31 +67,86 @@ const RegistrationForm = ({ nicknames, send }) => {
     }
   }
 
+  const profilePictureHandleChange = (event) => {
+    setProfilePicture(URL.createObjectURL(event.target.files[0]));
+  }
+
+  const removeProfilePicture = (e) => {
+    e.preventDefault();
+
+    profilePic.current.value = '';
+    setProfilePicture('');
+  }
+
+  const uploadPictureHandler = (e) => {
+    e.preventDefault();
+    profilePic.current.click();
+  }
+
   return (
-    <div>
+    <form onSubmit={sendNewInformation} className='user-form user'>
+      <div className='user-form__main-info'>
 
-      <form onSubmit={sendNewInformation}>
-        <label>
-          Nickname 
-          {isTaken && <span>Nickname is already taken</span>}
-          {isKeyword && <span>Keyword cannot be a nickname</span>}
-          <input type='text' value={nickname} minLength='3' required onChange={enterNicknameHandler} />
-        </label>
+        <div className='user-form__picture-manager'>
+          {profilePicture.length ?
+            <img src={profilePicture} alt='preview' className='user-picture' />
+            :
+            <div className='user-form__image-holder'>No image</div>
+          }
 
-        <label>
-          First name
-          <input type='text' value={firstName} minLength='1' required onChange={e => setFirstName(e.target.value)} />
-        </label>
+          <input
+            name="pictureFile"
+            type="file"
+            ref={profilePic}
+            onChange={profilePictureHandleChange}
+            className='user-form__picture-input'
+          />
+          <button
+            type="button"
+            onClick={uploadPictureHandler}
+            className='user-form__pic-button user-form__button'
+          >
+            Upload image
+          </button>
+          <button
+            type="button"
+            onClick={removeProfilePicture}
+            className='user-form__pic-button user-form__button'
+          >
+            Remove image
+          </button>
+        </div>
 
-        <label>
-          Last name
-          <input type='text' value={lastName} minLength='1' required onChange={e => setLastName(e.target.value)} />
-        </label>
+        <div className='user-form__data'>
+          <TextInput
+            label='Nickname'
+            minLength={3}
+            onChange={enterNicknameHandler}
+          />
 
-        <button>Save</button>
-      </form>
+          <div className='user-form__warning'>
+            {isTaken && <span>Nickname is already taken</span>}
+            {isKeyword && <span>Keyword cannot be a nickname</span>}
+          </div>
 
-    </div>
+          <TextInput
+            label='First name'
+            minLength={1}
+            onChange={setFirstName}
+          />
+
+          <TextInput
+            label='Last name'
+            minLength={1}
+            onChange={setLastName}
+          />
+
+        </div>
+
+      </div>
+      <button className='user-form__submit user-form__button'>Save</button>
+
+    </form>
   )
 }
 

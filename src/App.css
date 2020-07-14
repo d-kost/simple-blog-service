@@ -4,3 +4,9 @@
   width: 80%;
   color: #343434;
 }
+
+@media (max-width: 767px) {
+  .App {
+    width: 100%
+  }
+}

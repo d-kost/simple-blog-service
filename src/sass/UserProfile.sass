@@ -1,9 +1,9 @@
 .user
+    padding:
+        top: 15px
+        bottom: 15px
     &-profile
         display: flex
-        padding:
-            top: 15px
-            bottom: 15px
         border-bottom: 3px solid #dedede
     &-picture
         width: 150px
@@ -22,3 +22,7 @@
         &__nickname
             font-size: 20px
             font-weight: 600
+
+@media (max-width: 767px)
+    .user
+        padding: 15px 20px
