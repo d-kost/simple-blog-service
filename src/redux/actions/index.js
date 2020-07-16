@@ -3,7 +3,8 @@ import {
   SET_CURRENT_USER,
   SET_USER_FILTER,
   SET_GUEST_USER,
-  ADD_USER
+  ADD_USER,
+  UPDATE_USER
 } from '../constants';
 
 let blogPostId = 2;
@@ -31,6 +32,15 @@ export const setUserFilter = enteredUser => ({
 
 export const addUser = user => ({
   type: ADD_USER,
+  nickname: user.nickname,
+  firstName: user.firstName,
+  lastName: user.lastName,
+  picture: user.picture,
+  posts: user.posts
+})
+
+export const updateUser = user => ({
+  type: UPDATE_USER,
   nickname: user.nickname,
   firstName: user.firstName,
   lastName: user.lastName,

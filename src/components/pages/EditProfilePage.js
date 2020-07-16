@@ -5,7 +5,7 @@ import RegistrationFormContainer from '../../containers/RegistrationFormContaine
 const RegistrationPage = () => (
   <>
     <PageHeader />
-    <RegistrationFormContainer isRegistration={true} />
+    <RegistrationFormContainer isRegistration={false} />
   </>
 )
 

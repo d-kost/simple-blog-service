@@ -4,18 +4,23 @@ import keywords from '../../js_modules/keywords';
 import '../../sass/UserForm.sass';
 import TextInput from './TextInput';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const RegistrationForm = ({ nicknames, send }) => {
+const RegistrationForm = ({ nicknames, isRegistration, currentUser, send }) => {
 
-  const [nickname, setNickname] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
+  const [nickname, setNickname] = useState(
+    currentUser ? currentUser.nickname : '');
+  const [firstName, setFirstName] = useState(
+    currentUser ? currentUser.firstName : '');
+  const [lastName, setLastName] = useState(
+    currentUser ? currentUser.lastName : '');
+  const [profilePicture, setProfilePicture] = useState(
+    currentUser ? currentUser.picture : '');
 
   const [isTaken, setIsTaken] = useState(false);
   const [isKeyword, setIsKeyword] = useState(false);
 
-  const profilePic = useRef(null);
+  const profilePicRef = useRef(null);
   let history = useHistory();
 
   const sendNewInformation = (event) => {
@@ -74,13 +79,13 @@ const RegistrationForm = ({ nicknames, send }) => {
   const removeProfilePicture = (e) => {
     e.preventDefault();
 
-    profilePic.current.value = '';
+    profilePicRef.current.value = '';
     setProfilePicture('');
   }
 
   const uploadPictureHandler = (e) => {
     e.preventDefault();
-    profilePic.current.click();
+    profilePicRef.current.click();
   }
 
   return (
@@ -97,7 +102,7 @@ const RegistrationForm = ({ nicknames, send }) => {
           <input
             name="pictureFile"
             type="file"
-            ref={profilePic}
+            ref={profilePicRef}
             onChange={profilePictureHandleChange}
             className='user-form__picture-input'
           />
@@ -118,11 +123,12 @@ const RegistrationForm = ({ nicknames, send }) => {
         </div>
 
         <div className='user-form__data'>
-          <TextInput
+          {isRegistration && <TextInput
             label='Nickname'
             minLength={3}
+            value={nickname}
             onChange={enterNicknameHandler}
-          />
+          />}
 
           <div className='user-form__warning'>
             {isTaken && <span>Nickname is already taken</span>}
@@ -132,12 +138,14 @@ const RegistrationForm = ({ nicknames, send }) => {
           <TextInput
             label='First name'
             minLength={1}
+            value={firstName}
             onChange={setFirstName}
           />
 
           <TextInput
             label='Last name'
             minLength={1}
+            value={lastName}
             onChange={setLastName}
           />
 
@@ -148,6 +156,18 @@ const RegistrationForm = ({ nicknames, send }) => {
 
     </form>
   )
+}
+RegistrationForm.propTypes = {
+  nicknames: PropTypes.arrayOf(PropTypes.string),
+  isRegistration: PropTypes.bool,
+  currentUser: PropTypes.shape({
+    nickname: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    picture: PropTypes.string
+  }),
+  send: PropTypes.func
+
 }
 
 export default RegistrationForm;

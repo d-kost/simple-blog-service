@@ -24,7 +24,8 @@ const PageHeaderDetails = (
     }
   }, [closeDetails, detailsRef])
 
-  const myProfileLink = `/${currentUserNickname}`
+  const myProfileLink = `/${currentUserNickname}`;
+  const editProfileLink = `/${currentUserNickname}/editProfile`;
 
   return (
     <div className='header-details' ref={detailsRef}>
@@ -41,7 +42,7 @@ const PageHeaderDetails = (
 
         <li className='header-details__item'>
           <Link className='header-details__link'
-            to='/editProfile'
+            to={editProfileLink}
             onClick={closeDetails}
           >
             edit profile
