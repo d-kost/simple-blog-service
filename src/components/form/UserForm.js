@@ -6,7 +6,7 @@ import TextInput from './TextInput';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const RegistrationForm = ({ nicknames, isRegistration, currentUser, send }) => {
+const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
 
   const [nickname, setNickname] = useState(
     currentUser ? currentUser.nickname : '');
@@ -157,7 +157,8 @@ const RegistrationForm = ({ nicknames, isRegistration, currentUser, send }) => {
     </form>
   )
 }
-RegistrationForm.propTypes = {
+
+UserForm.propTypes = {
   nicknames: PropTypes.arrayOf(PropTypes.string),
   isRegistration: PropTypes.bool,
   currentUser: PropTypes.shape({
@@ -167,7 +168,6 @@ RegistrationForm.propTypes = {
     picture: PropTypes.string
   }),
   send: PropTypes.func
-
 }
 
-export default RegistrationForm;
+export default UserForm;

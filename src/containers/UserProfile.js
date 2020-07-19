@@ -30,8 +30,7 @@ UserProfile.propTypes = {
   nickname: PropTypes.string,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  picture: PropTypes.string,
-  posts: PropTypes.arrayOf(PropTypes.number),
+  picture: PropTypes.string
 }
 
 const findUserByNickname = (users, nickname) => {

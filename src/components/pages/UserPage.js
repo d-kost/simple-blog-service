@@ -13,8 +13,8 @@ const UserPage = () => {
     <>
       <PageHeader />
       <UserProfile nickname={nickname} />
-      <AddBlogPost />
-      <BlogPostListContainer filter={USER_FILTER} user={nickname}/>
+      <AddBlogPost userNickname={nickname}/>
+      <BlogPostListContainer filter={USER_FILTER} userNickname={nickname}/>
     </>
   )
 }

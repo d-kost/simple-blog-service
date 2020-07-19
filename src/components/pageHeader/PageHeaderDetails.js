@@ -72,7 +72,8 @@ const PageHeaderDetails = (
 PageHeaderDetails.propTypes = {
   currentUserNickname: PropTypes.string,
   changeProfileHandleClick: PropTypes.func,
-  closeDetails: PropTypes.func
+  closeDetails: PropTypes.func,
+  logOutHandleClick: PropTypes.func
 }
 
 export default PageHeaderDetails;

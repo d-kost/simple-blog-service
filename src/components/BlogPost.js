@@ -39,12 +39,10 @@ const BlogPost = ({ post, userPicture }) => {
 BlogPost.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
-    author: PropTypes.shape({
-      nickname: PropTypes.string,
-      picture: PropTypes.string
-    }),
+    authorNickname: PropTypes.string,
     text: PropTypes.string
-  })
+  }),
+  userPicture: PropTypes.string
 }
 
 export default React.memo(BlogPost);

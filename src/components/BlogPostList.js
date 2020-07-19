@@ -28,10 +28,7 @@ BlogPostList.propTypes = {
   blogPosts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      author: PropTypes.shape({
-        nickname: PropTypes.string,
-        picture: PropTypes.string
-      }),
+      authorNickname: PropTypes.string,
       text: PropTypes.string
     })
   )

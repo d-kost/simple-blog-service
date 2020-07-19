@@ -14,7 +14,7 @@ const filterBlogPosts = (blogPosts, userNickname, filter) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  blogPosts: filterBlogPosts(state.blogPosts, ownProps.user, ownProps.filter),
+  blogPosts: filterBlogPosts(state.blogPosts, ownProps.userNickname, ownProps.filter),
   users: state.users
 });
 

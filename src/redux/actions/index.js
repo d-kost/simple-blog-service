@@ -35,8 +35,7 @@ export const addUser = user => ({
   nickname: user.nickname,
   firstName: user.firstName,
   lastName: user.lastName,
-  picture: user.picture,
-  posts: user.posts
+  picture: user.picture
 })
 
 export const updateUser = user => ({

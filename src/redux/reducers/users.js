@@ -9,8 +9,7 @@ const users = (state = initUsers, action) => {
           nickname: action.nickname,
           firstName: action.firstName,
           lastName: action.lastName,
-          picture: action.picture,
-          posts: action.posts
+          picture: action.picture
         },
         ...state
       ];
@@ -22,8 +21,7 @@ const users = (state = initUsers, action) => {
             nickname: action.nickname,
             firstName: action.firstName,
             lastName: action.lastName,
-            picture: action.picture,
-            posts: action.posts
+            picture: action.picture
           }
         }
         return user;

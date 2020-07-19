@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import RegistrationForm from '../components/registration/RegistrationForm';
+import UserForm from '../components/form/UserForm';
 import { addUser, setCurrentUser, updateUser } from '../redux/actions/index';
 
 const getCurrentUser = (state) => {
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
