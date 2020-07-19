@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-const BlogPost = ({ post }) => {
+const BlogPost = ({ post, userPicture }) => {
 
   let history = useHistory();
 
   const goToUserPage = () => {
-    const userPagePath = `/${post.author.nickname}`;
+    const userPagePath = `/${post.authorNickname}`;
     history.push(userPagePath);
   };
 
@@ -17,14 +17,14 @@ const BlogPost = ({ post }) => {
 
       <div className='post-author'>
         <img
-          src={post.author.picture}
-          alt={post.author.nickname}
+          src={userPicture}
+          alt={post.authorNickname}
           className='post-author__picture'
           onClick={goToUserPage}
         />
 
         <p className='post-author__nickname' onClick={goToUserPage}>
-          {post.author.nickname}
+          {post.authorNickname}
         </p>
       </div>
 

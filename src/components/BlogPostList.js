@@ -3,12 +3,21 @@ import BlogPost from './BlogPost';
 import PropTypes from 'prop-types';
 import '../sass/BlogPosts.sass';
 
-const BlogPostList = ({ blogPosts }) => {
+const BlogPostList = ({ blogPosts, users }) => {
+
+  const getUserPictureByNickname = (nickname) => {
+    const user = users.find(user => user.nickname === nickname);
+    return user.picture;
+  }
 
   return (
     <div className='blog-posts'>
       {blogPosts.map(post => (
-        <BlogPost key={post.id} post={post} />
+        <BlogPost
+          key={post.id}
+          post={post}
+          userPicture={getUserPictureByNickname(post.authorNickname)}
+        />
       ))}
     </div>
   )

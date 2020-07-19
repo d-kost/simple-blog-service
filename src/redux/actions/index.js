@@ -9,10 +9,10 @@ import {
 
 let blogPostId = 2;
 
-export const addBlogPost = (text, author) => ({
+export const addBlogPost = (text, authorNickname) => ({
   type: ADD_BLOGPOST,
   id: blogPostId++,
-  author,
+  authorNickname,
   text
 })
 

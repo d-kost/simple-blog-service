@@ -7,7 +7,7 @@ const blogPosts = (state = initBlogPosts, action) => {
       return [
         {
           id: action.id,
-          author: action.author,
+          authorNickname: action.authorNickname,
           text: action.text
         },
         ...state        

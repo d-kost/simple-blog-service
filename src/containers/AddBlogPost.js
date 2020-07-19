@@ -15,7 +15,7 @@ const AddBlogPost = ({ dispatch, currentUser }) => {
   const handleFormSubmit = event => {
     event.preventDefault();
 
-    dispatch(addBlogPost(text, { nickname: currentUser.nickname, picture: currentUser.picture }));
+    dispatch(addBlogPost(text, currentUser.nickname));
     setText('');
   }
 
