@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-const BlogPost = ({ post, userPicture }) => {
+const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
 
   let history = useHistory();
 
@@ -11,8 +11,16 @@ const BlogPost = ({ post, userPicture }) => {
     history.push(userPagePath);
   };
 
+  const splitText = (text) => {
+    const visibleText = text.slice(0, visiblePostVolume);
+    const invisibleText = text.slice(visiblePostVolume);
+    return [visibleText, invisibleText];
+  }
+
+  let [visibleText, invisibleText] = splitText(post.text);
 
   return (
+
     <div className='post'>
 
       <div className='post-author'>
@@ -29,7 +37,11 @@ const BlogPost = ({ post, userPicture }) => {
       </div>
 
       <div className='post__content'>
-        <p className='post__text'>{post.text}</p>
+        {/* <div className='post__text'>{post.text}</div> */}
+        <div className='post__text'>
+          {visibleText}
+          <div className='post__text post__text--hidden'>{invisibleText}</div>
+        </div>
       </div>
 
     </div>
@@ -42,7 +54,8 @@ BlogPost.propTypes = {
     authorNickname: PropTypes.string,
     text: PropTypes.string
   }),
-  userPicture: PropTypes.string
+  userPicture: PropTypes.string,
+  visiblePostVolume: PropTypes.number
 }
 
 export default React.memo(BlogPost);
