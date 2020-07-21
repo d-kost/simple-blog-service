@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
 
-  let history = useHistory();
-
-  const goToUserPage = () => {
-    const userPagePath = `/${post.authorNickname}`;
-    history.push(userPagePath);
-  };
+  const [isTextOpened, setIsTextOpened] = useState(false);
 
   const splitText = (text) => {
     const visibleText = text.slice(0, visiblePostVolume);
@@ -23,25 +18,36 @@ const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
 
     <div className='post'>
 
-      <div className='post-author'>
+      <Link to={`/${post.authorNickname}`} className="post-author">
         <img
           src={userPicture}
           alt={post.authorNickname}
           className='post-author__picture'
-          onClick={goToUserPage}
         />
 
-        <p className='post-author__nickname' onClick={goToUserPage}>
+        <p className='post-author__nickname'>
           {post.authorNickname}
         </p>
-      </div>
+      </Link>
 
       <div className='post__content'>
-        {/* <div className='post__text'>{post.text}</div> */}
-        <div className='post__text'>
+        <p className='post__text'>
           {visibleText}
-          <div className='post__text post__text--hidden'>{invisibleText}</div>
-        </div>
+          <span
+            className={isTextOpened ? 'post__hiding-text post__hiding-text--shown' : 'post__hiding-text'}
+          >
+            {invisibleText}
+          </span>
+          
+          {post.text !== visibleText &&
+            <button
+              onClick={() => setIsTextOpened(!isTextOpened)}
+              className='post__open-btn'
+            >
+              {isTextOpened ? 'Hide text' : 'Show more'}
+            </button>}
+
+        </p>
       </div>
 
     </div>

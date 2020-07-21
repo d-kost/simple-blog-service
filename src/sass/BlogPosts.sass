@@ -9,12 +9,28 @@
     padding: 10px
     &__text
         white-space: pre-wrap
-        &--hidden
-            display: none
-    
+
+    &__open-btn
+        display: block
+        cursor: pointer
+        border: none
+        background-color: #e5e5e5
+            
+    &__hiding-text
+        font-size: 0
+        opacity: 0
+        transition: opacity .5s, font-size .25s
+        &--shown
+            font-size: inherit
+            opacity: 1
+            transition: opacity .5s, font-size .25s
+
+           
 .post-author
     display: flex
     align-items: center
+    text-decoration: none
+    color: inherit
     &__picture
         width: 40px
         height: 40px
