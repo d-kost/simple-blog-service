@@ -52,6 +52,8 @@ const PageHeaderDetails = (
         <li
           className='header-details__item'
           onClick={changeProfileHandleClick}
+          onKeyDown={changeProfileHandleClick}
+          tabIndex={0}
         >
           change account
         </li>
@@ -59,6 +61,8 @@ const PageHeaderDetails = (
         <li
           className='header-details__item'
           onClick={logOutHandleClick}
+          onKeyDown={logOutHandleClick}
+          tabIndex={0}
         >
           log out
         </li>

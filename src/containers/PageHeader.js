@@ -7,8 +7,9 @@ import ModalPortal from '../components/modal/ModalPortal';
 import ModalWindow from '../components/modal/ModalWindow';
 import ProfileChangeContainer from './modal/ProfileChangeContainer';
 import { setCurrentUser, setGuestUser } from '../redux/actions/index';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { GUEST_USER } from '../js_modules/initUsers';
+import { isClickOrKeyDown } from '../js_modules/eventCommonFunctions';
 
 const PageHeader = ({ dispatch, currentUserNickname }) => {
 
@@ -19,12 +20,16 @@ const PageHeader = ({ dispatch, currentUserNickname }) => {
 
   let history = useHistory();
 
-  const openModal = () => {
-    closeDetails();
-    setShowModal(true);
+  const openModal = (event) => {
+    //isClickOrKeyDown from js_modules
+    if (isClickOrKeyDown(event)) {
+      closeDetails();
+      setShowModal(true);
+    }
   }
 
   const acceptModal = (nickname) => {
+    //change current user
     dispatch(setCurrentUser(nickname));
     closeModal();
 
@@ -36,40 +41,45 @@ const PageHeader = ({ dispatch, currentUserNickname }) => {
     setShowModal(false);
   }
 
-  const toggleShowDetails = () => {
-    setShowDetails(!showDetails);
+  const toggleShowDetails = (event) => {
+    //isClickOrKeyDown from js_modules
+    if (isClickOrKeyDown(event)) {
+      setShowDetails(!showDetails);
+    }
   }
 
   const closeDetails = () => {
     setShowDetails(false);
   }
 
-  const goToHomePage = () => {
-    history.push('/');
-  }
-
-  const logOutHandleClick = () => {
-    closeDetails();
-    dispatch(setGuestUser());
+  const logOutHandleClick = (event) => {
+    //isClickOrKeyDown from js_modules
+    if (isClickOrKeyDown(event)) {
+      closeDetails();
+      dispatch(setGuestUser());
+    }
   }
 
   return (
     <header className='page-header'>
-      <div className='page-header__title page-header__content'
-        onClick={goToHomePage}
-      >
-        Simple blog
-      </div>
+      <Link to='/' className='page-header__title page-header__content'>To Home Page</Link>
 
       {isUserGuest ?
-        <div className='page-header__user page-header__content'
-        onClick={openModal}
+        <div
+          className='page-header__user page-header__content'
+          onClick={openModal}
+          onKeyDown={openModal}
+          tabIndex={0}
         >
           Log in
         </div>
         :
-        <div className='page-header__user page-header__content'
+        <div
+          className='page-header__user page-header__content'
+          tabIndex={0}
+          role='button'
           onClick={toggleShowDetails}
+          onKeyDown={toggleShowDetails}
         >
           {currentUserNickname}
           <span className='page-header__triangle'></span>

@@ -6,8 +6,9 @@ import {
   ADD_USER,
   UPDATE_USER
 } from '../constants';
+import initBlogPosts from '../../js_modules/initBlogPosts';
 
-let blogPostId = 2;
+let blogPostId = initBlogPosts.length;
 
 export const addBlogPost = (text, authorNickname) => ({
   type: ADD_BLOGPOST,

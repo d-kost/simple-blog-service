@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import BlogPostList from '../components/BlogPostList';
+import BlogPostList from '../components/blogPosts/BlogPostList';
 import { ALL, USER_FILTER } from '../js_modules/blogPostListFilters';
 
 const filterBlogPosts = (blogPosts, userNickname, filter) => {

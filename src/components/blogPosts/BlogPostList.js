@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BlogPost from './BlogPost';
 import PropTypes from 'prop-types';
-import '../sass/BlogPosts.sass';
+import '../../sass/BlogPosts.sass';
 
 const BlogPostList = ({ blogPosts, users }) => {
 
