@@ -128,6 +128,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
             minLength={3}
             value={nickname}
             onChange={enterNicknameHandler}
+            testid={'nickname'}
           />}
 
           <div className='user-form__warning'>
@@ -140,6 +141,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
             minLength={1}
             value={firstName}
             onChange={setFirstName}
+            testid={'firstName'}
           />
 
           <TextInput
@@ -147,6 +149,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
             minLength={1}
             value={lastName}
             onChange={setLastName}
+            testid={'lastName'}
           />
 
         </div>

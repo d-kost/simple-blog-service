@@ -38,16 +38,15 @@ const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
           >
             {invisibleText}
           </span>
-          
-          {post.text !== visibleText &&
-            <button
-              onClick={() => setIsTextOpened(!isTextOpened)}
-              className='post__open-btn'
-            >
-              {isTextOpened ? 'Hide text' : 'Show more'}
-            </button>}
-
         </p>
+
+        {invisibleText.length &&
+          <button
+            onClick={() => setIsTextOpened(!isTextOpened)}
+            className='post__open-btn'
+          >
+            {isTextOpened ? 'Hide text' : 'Show more'}
+          </button>}
       </div>
 
     </div>
