@@ -40,7 +40,7 @@ const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
           </span>
         </p>
 
-        {invisibleText.length &&
+        {invisibleText.length !== 0 &&
           <button
             onClick={() => setIsTextOpened(!isTextOpened)}
             className='post__open-btn'

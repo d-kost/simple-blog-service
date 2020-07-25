@@ -101,7 +101,8 @@ ProfileChange.propTypes = {
   })),
 
   onLoginClick: PropTypes.func,
-  setUserFilter: PropTypes.func
+  setUserFilter: PropTypes.func,
+  setGuestUser: PropTypes.func
 }
 
 export default ProfileChange;

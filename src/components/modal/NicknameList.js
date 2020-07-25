@@ -29,8 +29,7 @@ NicknameList.propTypes = {
     nickname: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    picture: PropTypes.string,
-    posts: PropTypes.arrayOf(PropTypes.number),
+    picture: PropTypes.string
   })),
   
   onClickNickname: PropTypes.func

@@ -23,11 +23,17 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
   const profilePicRef = useRef(null);
   let history = useHistory();
 
+  const nicknameMinLength = 3;
+
   const sendNewInformation = (event) => {
     event.preventDefault();
-    // if (!nickname.length || !firstName.length || !lastName.length) {
-    //   return;
-    // }
+    
+    if (nickname.length < nicknameMinLength ||
+      !firstName.length ||
+      !lastName.length) {
+      return;
+    }
+
     if (isTaken || isKeyword) {
       return;
     }
@@ -125,7 +131,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
         <div className='user-form__data'>
           {isRegistration && <TextInput
             label='Nickname'
-            minLength={3}
+            minLength={nicknameMinLength}
             value={nickname}
             onChange={enterNicknameHandler}
             testid={'nickname'}
