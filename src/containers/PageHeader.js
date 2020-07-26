@@ -70,6 +70,8 @@ const PageHeader = ({ dispatch, currentUserNickname }) => {
           onClick={openModal}
           onKeyDown={openModal}
           tabIndex={0}
+          role='button'
+          data-testid='login-button'
         >
           Log in
         </div>
@@ -80,6 +82,7 @@ const PageHeader = ({ dispatch, currentUserNickname }) => {
           role='button'
           onClick={toggleShowDetails}
           onKeyDown={toggleShowDetails}
+          data-testid='menu-button'
         >
           {currentUserNickname}
           <span className='page-header__triangle'></span>
