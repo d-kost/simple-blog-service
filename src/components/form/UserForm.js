@@ -19,11 +19,20 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
 
   const [isTaken, setIsTaken] = useState(false);
   const [isKeyword, setIsKeyword] = useState(false);
+  const [isUnacceptableSymbols, setIsUnacceptableSymbols] = useState(false);
 
   const profilePicRef = useRef(null);
   let history = useHistory();
 
   const nicknameMinLength = 3;
+
+  const isNicknameInvalid = () => {
+    const regexp = /[.,|/\\ ]/g;
+    regexp.lastIndex = 0
+
+    let result = regexp.test(nickname);
+    return result;
+  }
 
   const sendNewInformation = (event) => {
     event.preventDefault();
@@ -34,7 +43,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
       return;
     }
 
-    if (isTaken || isKeyword) {
+    if (isTaken || isUnacceptableSymbols || isKeyword) {
       return;
     }
 
@@ -55,6 +64,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
     setNickname(value);
     setIsTaken(false);
     setIsKeyword(false);
+    setIsUnacceptableSymbols(false);
     debouncedChange();
   }
 
@@ -70,6 +80,11 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
   const checkNicknames = () => {
     if (nicknames.includes(nickname)) {
       setIsTaken(true);
+      return;
+    }
+
+    if (isNicknameInvalid()) {
+      setIsUnacceptableSymbols(true);
       return;
     }
 
@@ -140,6 +155,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
           <div className='user-form__warning'>
             {isTaken && <span>Nickname is already taken</span>}
             {isKeyword && <span>Keyword cannot be a nickname</span>}
+            {isUnacceptableSymbols && <span>Unacceptable symbols: . , | / \ space</span>}
           </div>
 
           <TextInput
