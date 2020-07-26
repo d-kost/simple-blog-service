@@ -4,18 +4,21 @@ const initBlogPosts = [
   {
     id: 0,
     authorNickname: initUsers[1].nickname,
+    likes: [initUsers[0].nickname, initUsers[2].nickname],
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
       'Vestibulum sit amet pulvinar purus. Cras molestie quis nibh et hendrerit. Morbi.'
   },
   {
     id: 1,
     authorNickname: initUsers[2].nickname,
+    likes: [initUsers[0].nickname, initUsers[1].nickname, initUsers[2].nickname],
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
       'Duis purus ligula, tempus suscipit ligula a, gravida euismod nisl. Mauris consectetur.'
   },
   {
     id: 2,
     authorNickname: initUsers[2].nickname,
+    likes: [initUsers[1].nickname],
     text: 'This is a long post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.' + 
     'Pretium. Duis maximus malesuada tempus. Ut lobortis metus ut mi volutpat, vitae vehicula enim  ' + 
     'vestibulum. Proin purus massa, semper ut bibendum sit amet, euismod vel tellus. In vitae vestibulum ' + 

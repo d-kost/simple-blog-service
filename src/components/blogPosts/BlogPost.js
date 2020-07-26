@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { GUEST_USER } from '../../js_modules/initUsers';
 
-const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
+const BlogPost = ({
+  post,
+  userPicture,
+  visiblePostVolume,
+  currentUserNickname,
+  likePost
+}) => {
 
   const [isTextOpened, setIsTextOpened] = useState(false);
 
@@ -13,6 +20,12 @@ const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
   }
 
   let [visibleText, invisibleText] = splitText(post.text);
+
+  const likePostHandler = () => {
+    if (currentUserNickname !== GUEST_USER) {
+      likePost(post.id, currentUserNickname);
+    }
+  }
 
   return (
 
@@ -43,10 +56,21 @@ const BlogPost = ({ post, userPicture, visiblePostVolume }) => {
         {invisibleText.length !== 0 &&
           <button
             onClick={() => setIsTextOpened(!isTextOpened)}
-            className='post__open-btn'
+            className='post__open-btn post-button'
           >
             {isTextOpened ? 'Hide text' : 'Show more'}
           </button>}
+      </div>
+
+      <div className='post-like'>
+        <button
+          className='post-like__button post-button'
+          onClick={likePostHandler}
+        >
+          {post.likes.includes(currentUserNickname) ? 'Dislike' : 'Like'}
+        </button>
+
+        <p className='post-like__amount'>Likes: {post.likes.length}</p>
       </div>
 
     </div>
@@ -57,10 +81,13 @@ BlogPost.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
     authorNickname: PropTypes.string,
+    likes: PropTypes.arrayOf(PropTypes.string),
     text: PropTypes.string
   }),
   userPicture: PropTypes.string,
-  visiblePostVolume: PropTypes.number
+  visiblePostVolume: PropTypes.number,
+  currentUserNickname: PropTypes.string,
+  likePost: PropTypes.func
 }
 
 export default React.memo(BlogPost);
