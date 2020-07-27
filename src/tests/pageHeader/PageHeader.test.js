@@ -7,7 +7,7 @@ import { GUEST_USER } from '../../js_modules/initUsers';
 import { createStore } from 'redux';
 import rootReducer from "../../redux/reducers/index";
 
-import PageHeader from '../../containers/PageHeader';
+import PageHeaderContainer from '../../containers/PageHeaderContainer';
 
 // automatically afterEach(cleanup);
 
@@ -17,7 +17,7 @@ describe('render PageHeader', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <PageHeader />
+          <PageHeaderContainer />
         </Provider>
       </BrowserRouter>);
 
@@ -44,7 +44,7 @@ describe('render PageHeader', () => {
     render(
       <BrowserRouter>
         <Provider store={customStore}>
-          <PageHeader />
+          <PageHeaderContainer />
         </Provider>
       </BrowserRouter>, {
       store

@@ -21,6 +21,12 @@
   border-radius: 5px;
 }
 
+.user-small-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  object-fit: cover;
+}
 
 @media (max-width: 767px) {
   .App {

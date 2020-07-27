@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import '../sass/PageHeader.sass';
+import '../../sass/PageHeader.sass';
 import PropTypes from 'prop-types';
-import PageHeaderDetails from '../components/pageHeader/PageHeaderDetails';
-import ModalPortal from '../components/modal/ModalPortal';
-import ModalWindow from '../components/modal/ModalWindow';
-import ProfileChangeContainer from './modal/ProfileChangeContainer';
-import { setCurrentUser, setGuestUser } from '../redux/actions/index';
+import PageHeaderDetails from './PageHeaderDetails';
+import ModalPortal from '../modal/ModalPortal';
+import ModalWindow from '../modal/ModalWindow';
+import ProfileChangeContainer from '../../containers/modal/ProfileChangeContainer';
+import { setCurrentUser, setGuestUser } from '../../redux/actions/index';
 import { useHistory, Link } from 'react-router-dom';
-import { GUEST_USER } from '../js_modules/initUsers';
-import { isClickOrKeyDown } from '../js_modules/eventCommonFunctions';
+import { GUEST_USER } from '../../js_modules/initUsers';
+import { isClickOrKeyDown } from '../../js_modules/eventCommonFunctions';
 
-const PageHeader = ({ dispatch, currentUserNickname }) => {
+const PageHeader = ({ dispatch, currentUserNickname, currentUserPicture }) => {
 
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -77,15 +76,22 @@ const PageHeader = ({ dispatch, currentUserNickname }) => {
         </div>
         :
         <div
-          className='page-header__user page-header__content'
+          className='page-header__user'
           tabIndex={0}
           role='button'
           onClick={toggleShowDetails}
           onKeyDown={toggleShowDetails}
           data-testid='menu-button'
         >
-          {currentUserNickname}
-          <span className='page-header__triangle'></span>
+          <img
+            src={currentUserPicture}
+            alt={currentUserNickname}
+            className='user-small-picture'
+          />
+          <p className='page-header__nickname page-header__content'>
+            {currentUserNickname}
+            <span className='page-header__triangle'></span>
+          </p>
         </div>
       }
 
@@ -113,12 +119,9 @@ const PageHeader = ({ dispatch, currentUserNickname }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  currentUserNickname: state.currentUserNickname
-})
-
 PageHeader.propTypes = {
-  currentUserNickname: PropTypes.string
+  currentUserNickname: PropTypes.string,
+  currentUserPicture: PropTypes.string
 }
 
-export default connect(mapStateToProps)(PageHeader);
+export default PageHeader;

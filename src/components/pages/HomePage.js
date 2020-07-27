@@ -1,11 +1,11 @@
 import React from 'react';
 import BlogPostListContainer from '../../containers/BlogPostListContainer';
-import PageHeader from '../../containers/PageHeader';
+import PageHeaderContainer from '../../containers/PageHeaderContainer';
 import { ALL } from '../../js_modules/blogPostListFilters';
 
 const HomePage = () => (
   <>
-    <PageHeader />
+    <PageHeaderContainer />
     <BlogPostListContainer filter={ALL} user=''/>
   </>
 )

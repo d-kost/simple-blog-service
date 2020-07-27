@@ -1,10 +1,10 @@
 import React from 'react';
-import PageHeader from '../../containers/PageHeader';
+import PageHeaderContainer from '../../containers/PageHeaderContainer';
 import UserFormContainer from '../../containers/UserFormContainer';
 
 const RegistrationPage = () => (
   <>
-    <PageHeader />
+    <PageHeaderContainer />
     <UserFormContainer isRegistration={true} />
   </>
 )

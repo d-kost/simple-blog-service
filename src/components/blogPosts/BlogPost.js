@@ -37,14 +37,14 @@ const BlogPost = ({
           <img
             src={userPicture}
             alt={post.authorNickname}
-            className='post-author__picture'
+            className='post-author__picture user-small-picture'
           />
 
           <p className='post-author__nickname'>
             {post.authorNickname}
           </p>
         </Link>
-        
+
         {currentUserNickname === post.authorNickname &&
           <button className='post__delete-btn x-button' onClick={() => deletePost(post.id)}>
             &#10006;

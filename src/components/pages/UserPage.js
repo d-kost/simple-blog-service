@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogPostListContainer from '../../containers/BlogPostListContainer';
 import AddBlogPost from '../../containers/AddBlogPost';
-import PageHeader from '../../containers/PageHeader';
+import PageHeaderContainer from '../../containers/PageHeaderContainer';
 import UserProfile from '../../containers/UserProfile';
 import { useParams } from 'react-router-dom';
 import { USER_FILTER } from '../../js_modules/blogPostListFilters';
@@ -11,7 +11,7 @@ const UserPage = () => {
 
   return (
     <>
-      <PageHeader />
+      <PageHeaderContainer />
       <UserProfile nickname={nickname} />
       <AddBlogPost userNickname={nickname}/>
       <BlogPostListContainer filter={USER_FILTER} userNickname={nickname}/>
