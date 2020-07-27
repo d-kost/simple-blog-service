@@ -5,3 +5,4 @@ export const SET_USER_FILTER = 'SET_USER_FILTER';
 export const SET_GUEST_USER = 'SET_GUEST_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const LIKE_BLOGPOST = 'LIKE_BLOGPOST';
+export const DELETE_BLOGPOST = 'DELETE_BLOGPOST';

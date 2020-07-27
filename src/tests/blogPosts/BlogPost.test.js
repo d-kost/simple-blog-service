@@ -28,6 +28,7 @@ describe('render blog post', () => {
   it('short post', () => {
 
     const likePost = jest.fn();
+    const deletePost = jest.fn();
     act(() => {
       render(
         <BrowserRouter>
@@ -37,6 +38,7 @@ describe('render blog post', () => {
             visiblePostVolume={550}
             currentUserNickname={'test'}
             likePost={likePost}
+            deletePost={deletePost}
           />
         </BrowserRouter>,
         container);
@@ -56,6 +58,38 @@ describe('render blog post', () => {
     expect(likePost).toHaveBeenCalled();
     expect(likePost).toHaveBeenCalledTimes(1);
 
+    //no delete button
+    expect(container.querySelector('.post__delete-btn')).toBeNull();
+
+  });
+
+  it('post author can delete post', () => {
+
+    const deletePost = jest.fn();
+    act(() => {
+      render(
+        <BrowserRouter>
+          <BlogPost
+            post={post}
+            userPicture={''}
+            visiblePostVolume={550}
+            currentUserNickname={'ivan'}
+            likePost={jest.fn()}
+            deletePost={deletePost}
+          />
+        </BrowserRouter>,
+        container);
+    });
+
+    const deleteBtn = container.querySelector('.post__delete-btn');
+    expect(deleteBtn).not.toBeNull();
+
+    act(() => {
+      deleteBtn.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+    expect(deletePost).toHaveBeenCalled();
+    expect(deletePost).toHaveBeenCalledWith(12);
+
   });
 
   it('long post with clicks', () => {
@@ -68,6 +102,7 @@ describe('render blog post', () => {
             visiblePostVolume={5}
             currentUserNickname={'test'}
             likePost={jest.fn()}
+            deletePost={jest.fn()}
           />
         </BrowserRouter>,
         container);

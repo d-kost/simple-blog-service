@@ -5,7 +5,8 @@ import {
   SET_GUEST_USER,
   ADD_USER,
   UPDATE_USER,
-  LIKE_BLOGPOST
+  LIKE_BLOGPOST,
+  DELETE_BLOGPOST
 } from '../constants';
 import initBlogPosts from '../../js_modules/initBlogPosts';
 
@@ -23,6 +24,11 @@ export const likeBlogPost = (postId, userNickname) => ({
   type: LIKE_BLOGPOST,
   postId,
   userNickname
+})
+
+export const deleteBlogPost = (postId) => ({
+  type: DELETE_BLOGPOST,
+  postId
 })
 
 export const setCurrentUser = nickname => ({

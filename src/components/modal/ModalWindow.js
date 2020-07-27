@@ -9,7 +9,7 @@ const ModalWindow = (props) => {
 
       <div className='modal-window__top-line'>
         <button
-          className='modal-window__close-button'
+          className='x-button'
           onClick={props.onCancelClick}
         >
           &#10006;

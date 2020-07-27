@@ -29,7 +29,7 @@ describe('render ModalWindow', () => {
         </ModalWindow>, container);
     });
 
-    const closeBnt = container.querySelector('.modal-window__close-button');
+    const closeBnt = container.querySelector('.x-button');
     act(() => {
       fireEvent.click(closeBnt, { button: 1 });
     });

@@ -3,7 +3,7 @@ import BlogPost from './BlogPost';
 import PropTypes from 'prop-types';
 import '../../sass/BlogPosts.sass';
 
-const BlogPostList = ({ blogPosts, users, currentUserNickname, likePost }) => {
+const BlogPostList = ({ blogPosts, users, currentUserNickname, likePost, deletePost }) => {
 
   function getPostVolume() {
     const width = window.innerWidth;
@@ -63,6 +63,7 @@ const BlogPostList = ({ blogPosts, users, currentUserNickname, likePost }) => {
           visiblePostVolume={visiblePostVolume}
           currentUserNickname={currentUserNickname}
           likePost={likePost}
+          deletePost={deletePost}
         />
       ))}
     </div>
@@ -80,7 +81,8 @@ BlogPostList.propTypes = {
     })
   ),
   currentUserNickname: PropTypes.string,
-  likePost: PropTypes.func
+  likePost: PropTypes.func,
+  deletePost: PropTypes.func
 }
 
 export default BlogPostList;

@@ -1,5 +1,5 @@
 import initBlogPosts from '../../js_modules/initBlogPosts';
-import { ADD_BLOGPOST, LIKE_BLOGPOST } from '../constants';
+import { ADD_BLOGPOST, LIKE_BLOGPOST, DELETE_BLOGPOST } from '../constants';
 
 const blogPosts = (state = initBlogPosts, action) => {
   switch (action.type) {
@@ -22,12 +22,6 @@ const blogPosts = (state = initBlogPosts, action) => {
             post.likes.filter(nickname => nickname !== action.userNickname) :
             [...post.likes, action.userNickname];
 
-          // if (post.likes.includes(action.userNickname)) {
-          //   updatedLikes = post.likes.filter(nickname => nickname !== action.userNickname);
-          // } else {
-          //   updatedLikes = [...post.likes, action.userNickname];
-          // }
-
           return {
             id: post.id,
             authorNickname: post.authorNickname,
@@ -37,6 +31,9 @@ const blogPosts = (state = initBlogPosts, action) => {
         }
         return post;
       });
+
+    case DELETE_BLOGPOST:
+      return state.filter(post => post.id !== action.postId);
 
     default:
       return state;

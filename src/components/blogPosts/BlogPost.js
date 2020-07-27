@@ -8,7 +8,8 @@ const BlogPost = ({
   userPicture,
   visiblePostVolume,
   currentUserNickname,
-  likePost
+  likePost,
+  deletePost
 }) => {
 
   const [isTextOpened, setIsTextOpened] = useState(false);
@@ -31,17 +32,24 @@ const BlogPost = ({
 
     <div className='post'>
 
-      <Link to={`/${post.authorNickname}`} className="post-author">
-        <img
-          src={userPicture}
-          alt={post.authorNickname}
-          className='post-author__picture'
-        />
+      <div className='post__header'>
+        <Link to={`/${post.authorNickname}`} className="post-author">
+          <img
+            src={userPicture}
+            alt={post.authorNickname}
+            className='post-author__picture'
+          />
 
-        <p className='post-author__nickname'>
-          {post.authorNickname}
-        </p>
-      </Link>
+          <p className='post-author__nickname'>
+            {post.authorNickname}
+          </p>
+        </Link>
+        
+        {currentUserNickname === post.authorNickname &&
+          <button className='post__delete-btn x-button' onClick={() => deletePost(post.id)}>
+            &#10006;
+          </button>}
+      </div>
 
       <div className='post__content'>
         <p className='post__text'>
@@ -87,7 +95,8 @@ BlogPost.propTypes = {
   userPicture: PropTypes.string,
   visiblePostVolume: PropTypes.number,
   currentUserNickname: PropTypes.string,
-  likePost: PropTypes.func
+  likePost: PropTypes.func,
+  deletePost: PropTypes.func
 }
 
 export default React.memo(BlogPost);

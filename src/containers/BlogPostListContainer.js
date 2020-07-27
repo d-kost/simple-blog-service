@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import BlogPostList from '../components/blogPosts/BlogPostList';
 import { ALL, USER_FILTER } from '../js_modules/blogPostListFilters';
-import { likeBlogPost } from '../redux/actions/index';
+import { likeBlogPost, deleteBlogPost } from '../redux/actions/index';
 
 const filterBlogPosts = (blogPosts, userNickname, filter) => {
   switch (filter) {
@@ -21,7 +21,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  likePost: (postId, userNickname) => dispatch(likeBlogPost(postId, userNickname))
+  likePost: (postId, userNickname) => dispatch(likeBlogPost(postId, userNickname)),
+  deletePost: (postId) => dispatch(deleteBlogPost(postId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPostList);

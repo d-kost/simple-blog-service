@@ -7,6 +7,11 @@
     border: 2px solid #c6c3c3
     border-radius: 5px
     padding: 10px
+    &__header
+        display: flex
+    &__delete-btn
+        margin-left: auto
+        color: dimgrey
     &__text
         white-space: pre-wrap
 
@@ -18,13 +23,14 @@
         font-size: 0
         opacity: 0
         transition: opacity .5s, font-size .25s
-        display: inline-block
+        position: absolute
+        top: -300px
         &--shown
             font-size: inherit
             opacity: 1
-            transition: opacity .5s, font-size .25s
+            top: 0
+            position: relative
 
-           
 .post-author
     display: flex
     align-items: center
@@ -46,6 +52,7 @@
 .post-button
     cursor: pointer
     border: none
+    padding: 0
     width: 80px
 
 .post-like
