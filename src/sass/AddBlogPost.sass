@@ -19,5 +19,12 @@ $button-color: lightseagreen
         border: none
         &:hover
             background-color: darken($button-color, 5%)
-    &-wrapper
+
+@media (max-width: 767px)
+    .post-form
+        width: 70%
+
+@media (max-width: 480px)
+    .post-form__submit
+        width: 100%
         

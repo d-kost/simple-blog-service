@@ -1,24 +1,13 @@
 import { connect } from 'react-redux';
 import ProfileChange from '../../components/modal/ProfileChange';
-import { setUserFilter, setGuestUser } from '../../redux/actions/index';
-
-const filterUsers = (users, userFilter) => {
-  const filter = userFilter.toLowerCase();
-
-  return users.filter(user => (
-    user.nickname.toLowerCase().includes(filter) ||
-    user.firstName.toLowerCase().includes(filter) ||
-    user.lastName.toLowerCase().includes(filter)
-  ));
-}
+import { setGuestUser } from '../../redux/actions/index';
 
 const mapStateToProps = (state, ownProps) => ({
-  filteredUsers: filterUsers(state.users, state.userFilter),
+  users: state.users,
   onLoginClick: ownProps.onLoginClick
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUserFilter: enteredUser => dispatch(setUserFilter(enteredUser)),
   setGuestUser: () => dispatch(setGuestUser())
 });
 

@@ -49,6 +49,23 @@
         height: 35px
         margin-top: 5px
 
+.modal
+    &-button
+        background-color: lightgrey
+        border: none
+        &:hover
+            background-color: darken(lightgrey, 25%)
+    &-users
+        list-style: none
+        padding: 0 10px
+        margin: 0
+        &__user
+            cursor: pointer
+            padding: 2px 0
+            outline: none
+            &:focus, &:hover
+                background-color: transparentize(black, 0.6)
+
 .authorization
     flex-grow: 1
     overflow: auto
@@ -60,3 +77,24 @@
     &__log-in
         width: 80px
         cursor: pointer
+
+.modal-warning
+    margin: 0
+    text-align: center
+    color: gray
+    &--hidden
+        visibility: hidden
+    &__nickname
+        font-weight: 500
+
+@media (max-width: 767px)
+    .user-change
+        width: 90%
+
+@media (max-width: 480px)
+    .authorization__form
+        flex-direction: column
+
+    .authorization__log-in
+        width: 100%
+        height: 30px

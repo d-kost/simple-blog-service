@@ -110,7 +110,7 @@ const PageHeader = ({ dispatch, currentUserNickname, currentUserPicture }) => {
             onCancelClick={closeModal}
           >
             <ProfileChangeContainer
-              onLoginClick={acceptModal}
+              acceptModal={acceptModal}
             />
           </ModalWindow>
         </ModalPortal>

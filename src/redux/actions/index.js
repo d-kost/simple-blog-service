@@ -1,7 +1,6 @@
 import {
   ADD_BLOGPOST,
   SET_CURRENT_USER,
-  SET_USER_FILTER,
   SET_GUEST_USER,
   ADD_USER,
   UPDATE_USER,
@@ -38,11 +37,6 @@ export const setCurrentUser = nickname => ({
 
 export const setGuestUser = () => ({
   type: SET_GUEST_USER
-})
-
-export const setUserFilter = enteredUser => ({
-  type: SET_USER_FILTER,
-  enteredUser
 })
 
 export const addUser = user => ({

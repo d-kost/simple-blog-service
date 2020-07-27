@@ -10,7 +10,7 @@ const NicknameList = ({ users, onClickNickname }) => {
           key={user.nickname}
           onClick={() => onClickNickname(user.nickname)}
           className='modal-users__user'
-          tabIndex={1}
+          tabIndex={0}
         >
           {user.nickname}&nbsp;
           <span className='modal-users__fullname'>
