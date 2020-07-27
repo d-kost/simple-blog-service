@@ -119,6 +119,7 @@ const PageHeader = ({ dispatch, currentUserNickname, currentUserPicture }) => {
   )
 }
 
+
 PageHeader.propTypes = {
   currentUserNickname: PropTypes.string,
   currentUserPicture: PropTypes.string

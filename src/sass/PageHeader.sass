@@ -12,9 +12,13 @@ $header-color: lightseagreen
     display: flex
     align-items: center
     margin-left: auto
+    padding-left: 5px
     right: 0
     cursor: pointer
     font-weight: 600
+    outline: none
+    &:hover, &:focus
+      background-color: darken($header-color, 5%)
   &__nickname
     padding: 15px
     margin: 0
@@ -31,22 +35,33 @@ $header-color: lightseagreen
     font-weight: 700
     text-decoration: none
     color: inherit
+    outline: none
+    &:hover, &:focus
+      background-color: darken($header-color, 5%)
 
 .header-details
     position: absolute
-    top: 40px
+    top: 100%
     right: 0
-    background-color: #fff
-    border: 2px inset $header-color
-    border-radius: 10%
+    background-color: transparentize($header-color, .1)
+    animation: rotateDetails 200ms ease-in-out forwards
     &__list
       list-style: none
-      padding: 10px
+      padding: 10px 0
       margin: 0
     &__item
       cursor: pointer
-      padding: 5px 0
-      border-bottom: 1px solid $header-color
+      padding: 5px 10px
+      font-weight: 500
+      outline: none
+      &:hover, &:focus
+        background-color: darken($header-color, 5%)
     &__link
       text-decoration: none
       color: inherit
+
+@keyframes rotateDetails
+  0% 
+    transform: rotateY(90deg)
+  100%
+    transform: rotateY(0)

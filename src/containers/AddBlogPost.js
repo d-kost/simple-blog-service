@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addBlogPost } from '../redux/actions/index';
 import PropTypes from 'prop-types';
+import '../sass/AddBlogPost.sass';
 
 const AddBlogPost = ({ dispatch, currentUser, isOwnProfile }) => {
 
@@ -15,6 +16,10 @@ const AddBlogPost = ({ dispatch, currentUser, isOwnProfile }) => {
   const handleFormSubmit = event => {
     event.preventDefault();
 
+    if (!text.trim().length) {
+      return;
+    }
+
     if (currentUser) {
       dispatch(addBlogPost(text, currentUser.nickname));
       setText('');
@@ -23,10 +28,18 @@ const AddBlogPost = ({ dispatch, currentUser, isOwnProfile }) => {
 
   return (
     isOwnProfile &&
-    <form onSubmit={handleFormSubmit}>
-      <textarea type='text' value={text} onChange={handleTextChange} />
-      <button>Post</button>
-    </form>
+    // <div className='post-form-wrapper'>
+      <form onSubmit={handleFormSubmit} className='post-form'>
+        <textarea
+          type='text'
+          value={text}
+          onChange={handleTextChange}
+          className='post-form__textarea'
+          placeholder='Type here...'
+        />
+        <button className='post-form__submit'>Post</button>
+      </form>
+    // </div>
   )
 
 }

@@ -53,7 +53,8 @@ const ProfileChange = ({ filteredUsers, onLoginClick, setUserFilter, setGuestUse
         <div className='authorization'>
           <div className='authorization__form'>
             <input className='authorization__input'
-              type='text' value={enteredUser} onChange={onInputChange} />
+              type='text' value={enteredUser} onChange={onInputChange}
+              placeholder='Enter name or nickname' />
 
             <button className='authorization__log-in'
               onClick={() => onLoginClick(enteredUser)}
