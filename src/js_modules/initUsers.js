@@ -1,3 +1,6 @@
+import catAvatar from '../images/cat.png';
+import user1Avatar from '../images/user1.png';
+import user2Avatar from '../images/user2.png';
 export const GUEST_USER = 'GUEST_USER';
 
 const initUsers = [
@@ -5,19 +8,20 @@ const initUsers = [
     nickname: 'cat',
     firstName: 'Viktor',
     lastName: 'Cat',
-    picture: 'https://api.adorable.io/avatars/285/cat.png'
+    picture: catAvatar
+    // picture: 'https://api.adorable.io/avatars/285/cat.png'
   },
   {
     nickname: 'user1',
     firstName: 'Mary',
     lastName: 'Smith',
-    picture: 'https://api.adorable.io/avatars/285/user1.png'
+    picture: user1Avatar
   },
   {
     nickname: 'user2',
     firstName: 'Anna',
     lastName: 'Johnson',
-    picture: 'https://api.adorable.io/avatars/285/user2.png'
+    picture: user2Avatar
   }
 ]
 
