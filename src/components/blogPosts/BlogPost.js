@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GUEST_USER } from '../../js_modules/initUsers';
@@ -6,26 +6,55 @@ import { GUEST_USER } from '../../js_modules/initUsers';
 const BlogPost = ({
   post,
   userPicture,
-  visiblePostVolume,
+  visiblePostHeightProp,
   currentUserNickname,
   likePost,
   deletePost
 }) => {
 
   const [isTextOpened, setIsTextOpened] = useState(false);
-
-  const splitText = (text) => {
-    const visibleText = text.slice(0, visiblePostVolume);
-    const invisibleText = text.slice(visiblePostVolume);
-    return [visibleText, invisibleText];
-  }
-
-  let [visibleText, invisibleText] = splitText(post.text);
+  const [isTextOverflow, setIsTextOverflow] = useState(false);
+  const [visiblePostHeight, setVisiblePostHeight] = useState(visiblePostHeightProp);
 
   const likePostHandler = () => {
     if (currentUserNickname !== GUEST_USER) {
       likePost(post.id, currentUserNickname);
     }
+  }
+
+  const postTextRef = useRef(null);
+  const postTextWrapperRef = useRef(null);
+
+  useEffect(() => {
+
+    const heightDifference = visiblePostHeightProp - postTextRef.current.clientHeight;
+
+    if (heightDifference < 0 && heightDifference > -30) {
+
+      setVisiblePostHeight(postTextRef.current.clientHeight);
+      setIsTextOverflow(false);
+
+    } else {
+
+      const textOverflow = visiblePostHeightProp < postTextRef.current.clientHeight;
+      setIsTextOverflow(textOverflow);
+
+      //on window resize
+      setVisiblePostHeight(visiblePostHeightProp);
+    }
+
+
+  }, [visiblePostHeightProp])
+
+  //change wrapper max height 
+  const openPostText = () => {
+    const textHeight = postTextRef.current.clientHeight + 'px';
+    let wrapperStyle = postTextWrapperRef.current.style;
+
+    wrapperStyle.maxHeight = wrapperStyle.maxHeight !== textHeight ?
+      textHeight : visiblePostHeight + 'px';
+
+    setIsTextOpened(!isTextOpened)
   }
 
   return (
@@ -52,18 +81,15 @@ const BlogPost = ({
       </div>
 
       <div className='post__content'>
-        <p className='post__text'>
-          {visibleText}
-          <span
-            className={isTextOpened ? 'post__hiding-text post__hiding-text--shown' : 'post__hiding-text'}
-          >
-            {invisibleText}
-          </span>
-        </p>
+        <div className={'post__text-wrapper'} ref={postTextWrapperRef} style={{ maxHeight: visiblePostHeight + 'px' }}>
+          <p className={'post__text'} ref={postTextRef}>
+            {post.text}
+          </p>
+        </div>
 
-        {invisibleText.length !== 0 &&
+        {isTextOverflow &&
           <button
-            onClick={() => setIsTextOpened(!isTextOpened)}
+            onClick={openPostText}
             className='post__open-btn post-button'
           >
             {isTextOpened ? 'Hide text' : 'Show more'}
@@ -93,7 +119,7 @@ BlogPost.propTypes = {
     text: PropTypes.string
   }),
   userPicture: PropTypes.string,
-  visiblePostVolume: PropTypes.number,
+  visiblePostHeightProp: PropTypes.number,
   currentUserNickname: PropTypes.string,
   likePost: PropTypes.func,
   deletePost: PropTypes.func

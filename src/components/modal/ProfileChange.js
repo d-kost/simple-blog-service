@@ -3,6 +3,7 @@ import { BrowserRouter, useHistory } from 'react-router-dom';
 import NicknameList from './NicknameList';
 import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
+import { isClickOrKeyDown } from '../../js_modules/eventCommonFunctions';
 
 const ProfileChange = ({ users, acceptModal, setGuestUser }) => {
 
@@ -53,9 +54,9 @@ const ProfileChange = ({ users, acceptModal, setGuestUser }) => {
     }
   }
 
-  const onClickNickname = useCallback((nickname) => {
-
-    if (enteredUser !== nickname) {
+  const onClickNickname = useCallback((event, nickname) => {
+    if (enteredUser !== nickname && isClickOrKeyDown(event)) {
+      setWarning(false);
       setEnteredUser(nickname);
     }
 

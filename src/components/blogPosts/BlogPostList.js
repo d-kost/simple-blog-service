@@ -11,32 +11,32 @@ const BlogPostList = ({ blogPosts, users, currentUserNickname, likePost, deleteP
     //breakpoints: 320px, 480px, 767px
     //max width of app = 1500px
     if (width <= 320) {
-      return 150;
+      return 85;
     }
 
     if (width <= 480 && width > 320) {
-      return 250;
+      return 85;
     }
 
     if (width <= 767 && width > 480) {
-      return 400;
+      return 130;
     }
 
     if (width > 767) {
-      return 550;
+      return 150;
     }
 
   }
 
-  const [visiblePostVolume, setVisiblePostVolume] = useState(getPostVolume());
+  const [visiblePostHeight, setVisiblePostHeight] = useState(getPostVolume());
 
   useEffect(() => {
     function handleResize() {
 
       const postVolume = getPostVolume();
-      if (postVolume !== visiblePostVolume) {
+      if (postVolume !== visiblePostHeight) {
 
-        setVisiblePostVolume(postVolume);
+        setVisiblePostHeight(postVolume);
       }
       
     }
@@ -44,7 +44,7 @@ const BlogPostList = ({ blogPosts, users, currentUserNickname, likePost, deleteP
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
 
-  }, [visiblePostVolume]);
+  }, [visiblePostHeight]);
 
 
 
@@ -60,7 +60,7 @@ const BlogPostList = ({ blogPosts, users, currentUserNickname, likePost, deleteP
           key={post.id}
           post={post}
           userPicture={getUserPictureByNickname(post.authorNickname)}
-          visiblePostVolume={visiblePostVolume}
+          visiblePostHeightProp={visiblePostHeight}
           currentUserNickname={currentUserNickname}
           likePost={likePost}
           deletePost={deletePost}

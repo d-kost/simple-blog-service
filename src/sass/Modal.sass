@@ -59,6 +59,8 @@
         list-style: none
         padding: 0 10px
         margin: 0
+        &__nickname
+            font-weight: 500
         &__user
             cursor: pointer
             padding: 2px 0
@@ -88,10 +90,14 @@
         font-weight: 500
 
 @media (max-width: 767px)
+    .modal-window
+        width: 80%
     .user-change
         width: 90%
 
 @media (max-width: 480px)
+    .modal-window
+        width: 90%
     .authorization__form
         flex-direction: column
 

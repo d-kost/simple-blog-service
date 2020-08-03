@@ -19,7 +19,7 @@ afterEach(() => {
 
 describe('render NicknameList', () => {
 
-  it('login button', () => {
+  it('click on nickname and call function', () => {
     const onClickNickname = jest.fn();
     const users = [
       {
@@ -51,7 +51,7 @@ describe('render NicknameList', () => {
       fireEvent.click(listItems[0], { button: 1 });
     });
     expect(onClickNickname).toHaveBeenCalled();
-    expect(onClickNickname).toHaveBeenCalledWith(users[0].nickname);
+    expect(onClickNickname).toHaveBeenCalledTimes(1);
 
   });
 })

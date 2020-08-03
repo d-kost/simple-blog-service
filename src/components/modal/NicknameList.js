@@ -8,14 +8,15 @@ const NicknameList = ({ users, onClickNickname }) => {
       {users.map(user => (
         <li
           key={user.nickname}
-          onClick={() => onClickNickname(user.nickname)}
+          onClick={e => onClickNickname(e, user.nickname)}
+          onKeyDown={e => onClickNickname(e, user.nickname)}
           className='modal-users__user'
           tabIndex={0}
         >
-          {user.nickname}&nbsp;
-          <span className='modal-users__fullname'>
-            {user.firstName} {user.lastName}
+          <span className='modal-users__nickname'>
+            {user.nickname}&nbsp;
           </span>
+          {user.firstName} {user.lastName}
         </li>
       ))}
 
@@ -31,7 +32,7 @@ NicknameList.propTypes = {
     lastName: PropTypes.string,
     picture: PropTypes.string
   })),
-  
+
   onClickNickname: PropTypes.func
 }
 

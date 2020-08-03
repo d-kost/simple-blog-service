@@ -35,7 +35,7 @@ describe('render blog post', () => {
           <BlogPost
             post={post}
             userPicture={''}
-            visiblePostVolume={550}
+            visiblePostHeightProp={150}
             currentUserNickname={'test'}
             likePost={likePost}
             deletePost={deletePost}
@@ -72,7 +72,7 @@ describe('render blog post', () => {
           <BlogPost
             post={post}
             userPicture={''}
-            visiblePostVolume={550}
+            visiblePostHeightProp={150}
             currentUserNickname={'ivan'}
             likePost={jest.fn()}
             deletePost={deletePost}
@@ -92,30 +92,4 @@ describe('render blog post', () => {
 
   });
 
-  it('long post with clicks', () => {
-    act(() => {
-      render(
-        <BrowserRouter>
-          <BlogPost
-            post={post}
-            userPicture={''}
-            visiblePostVolume={5}
-            currentUserNickname={'test'}
-            likePost={jest.fn()}
-            deletePost={jest.fn()}
-          />
-        </BrowserRouter>,
-        container);
-    });
-    expect(container.querySelector('.post__hiding-text').textContent).toBe('text');
-
-    const openButton = document.querySelector('.post__open-btn');
-    expect(openButton.innerHTML).toBe('Show more');
-
-    act(() => {
-      openButton.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    });
-
-    expect(openButton.innerHTML).toBe("Hide text");
-  })
 })

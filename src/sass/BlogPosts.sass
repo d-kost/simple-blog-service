@@ -16,10 +16,25 @@
         white-space: pre-wrap
         word-wrap: break-word
         word-break: break-all
+        margin: 0
+    &__text-wrapper
+        padding-top: 10px
+        overflow: hidden
+        max-height: 150px
+        transition: max-height 0.3s ease-in-out
+        &:after
+            content: ""
+            // position: absolute
+            top: 0
+            bottom: 0
+            left: -15px
+            right: -15px
+            box-shadow: inset white 0 -15px 10px
 
     &__open-btn
         display: block
         background-color: #e5e5e5
+        margin-top: 10px
             
     &__hiding-text
         font-size: 0
