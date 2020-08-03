@@ -3,7 +3,7 @@ import './App.css';
 import HomePage from './components/pages/HomePage';
 import RegistrationPage from './components/pages/RegistrationPage';
 import EditProfilePage from './components/pages/EditProfilePage';
-import UserPage from './components/pages/UserPage';
+import UserPageContainer from './containers/pages/UserPageContainer';
 import { Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
           <EditProfilePage />
         </Route>
         <Route path='/:nickname'>
-          <UserPage />
+          <UserPageContainer />
         </Route>
         
         <Route path='/'>
