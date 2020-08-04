@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = ({ label, minLength, value, onChange, testid }) => {
+const TextInput = ({ label, minLength, maxLength, value, onChange, testid }) => {
 
   return (
     <label className='user-form__label'>
@@ -10,6 +10,7 @@ const TextInput = ({ label, minLength, value, onChange, testid }) => {
         type='text'
         value={value}
         minLength={minLength}
+        maxLength={maxLength}
         required
         onChange={e => onChange(e.target.value)}
         className='user-form__text-input'
@@ -22,6 +23,7 @@ const TextInput = ({ label, minLength, value, onChange, testid }) => {
 TextInput.propTypes = {
   label: PropTypes.string,
   minLength: PropTypes.number,
+  maxLength: PropTypes.number,
   value: PropTypes.string,
   onChange: PropTypes.func,
   testid: PropTypes.string

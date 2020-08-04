@@ -25,6 +25,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
   let history = useHistory();
 
   const nicknameMinLength = 3;
+  const nicknameMaxLength = 10;
 
   const isNicknameInvalid = () => {
     const regexp = /[.,|/\\ ]/g;
@@ -147,6 +148,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
           {isRegistration && <TextInput
             label='Nickname'
             minLength={nicknameMinLength}
+            maxLength={nicknameMaxLength}
             value={nickname}
             onChange={enterNicknameHandler}
             testid={'nickname'}
@@ -161,6 +163,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
           <TextInput
             label='First name'
             minLength={1}
+            maxLength={50}
             value={firstName}
             onChange={setFirstName}
             testid={'firstName'}
@@ -169,6 +172,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
           <TextInput
             label='Last name'
             minLength={1}
+            maxLength={50}
             value={lastName}
             onChange={setLastName}
             testid={'lastName'}
