@@ -9,6 +9,7 @@ import { setCurrentUser, setGuestUser } from '../../redux/actions/index';
 import { useHistory, Link } from 'react-router-dom';
 import { GUEST_USER } from '../../js_modules/initUsers';
 import { isClickOrKeyDown } from '../../js_modules/eventCommonFunctions';
+import ImagePolyfill from '../common/ImagePolyfill';
 
 const PageHeader = ({ dispatch, currentUserNickname, currentUserPicture }) => {
 
@@ -83,11 +84,12 @@ const PageHeader = ({ dispatch, currentUserNickname, currentUserPicture }) => {
           onKeyDown={toggleShowDetails}
           data-testid='menu-button'
         >
-          <img
+          <ImagePolyfill
             src={currentUserPicture}
             alt={currentUserNickname}
-            className='user-small-picture'
+            imgClass='user-small-picture'
           />
+
           <p className='page-header__nickname page-header__content'>
             {currentUserNickname}
             <span className='page-header__triangle'></span>

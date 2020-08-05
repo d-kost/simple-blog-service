@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import '../sass/UserProfile.sass';
 import PropTypes from 'prop-types';
+import ImagePolyfill from '../components/common/ImagePolyfill';
 
 const UserProfile = ({ user }) => {
 
   return (
     <div className='user user-profile'>
-      {console.log('profile render')}
-      <img src={user.picture} alt={user.nickname} className='user-picture' />
+      
+      <ImagePolyfill src={user.picture} alt={user.nickname} imgClass='user-picture' />
 
       <div className='user-info'>
         <p className='user-info__fullname'>

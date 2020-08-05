@@ -5,6 +5,7 @@ import '../../sass/UserForm.sass';
 import TextInput from './TextInput';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ImagePolyfill from '../common/ImagePolyfill';
 
 const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
 
@@ -37,7 +38,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
 
   const sendNewInformation = (event) => {
     event.preventDefault();
-    
+
     if (nickname.length < nicknameMinLength ||
       !firstName.length ||
       !lastName.length) {
@@ -95,7 +96,13 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
   }
 
   const profilePictureHandleChange = (event) => {
-    setProfilePicture(URL.createObjectURL(event.target.files[0]));
+
+    if (event.target.files && event.target.files[0]) {
+      setProfilePicture(URL.createObjectURL(event.target.files[0]));
+
+    } else {
+      setProfilePicture('');
+    }
   }
 
   const removeProfilePicture = (e) => {
@@ -116,7 +123,7 @@ const UserForm = ({ nicknames, isRegistration, currentUser, send }) => {
 
         <div className='user-form__picture-manager'>
           {profilePicture.length ?
-            <img src={profilePicture} alt='preview' className='user-picture' />
+            <ImagePolyfill src={profilePicture} alt='preview' imgClass='user-picture' />
             :
             <div className='user-form__image-holder'>No image</div>
           }

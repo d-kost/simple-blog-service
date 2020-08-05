@@ -28,6 +28,19 @@
   object-fit: cover;
 }
 
+.ie-img-wrapper {
+  overflow: hidden;
+}
+    
+.ie-object-fit-cover {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  transform: translate(-50%, -50%);
+}
+
 @media (max-width: 767px) {
   .App {
     width: 100%

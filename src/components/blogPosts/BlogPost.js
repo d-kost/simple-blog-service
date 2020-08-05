@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GUEST_USER } from '../../js_modules/initUsers';
+import ImagePolyfill from '../common/ImagePolyfill';
 
 const BlogPost = ({
   post,
@@ -63,10 +64,10 @@ const BlogPost = ({
 
       <div className='post__header'>
         <Link to={`/${post.authorNickname}`} className="post-author">
-          <img
+          <ImagePolyfill
             src={userPicture}
             alt={post.authorNickname}
-            className='post-author__picture user-small-picture'
+            imgClass='post-author__picture user-small-picture'
           />
 
           <p className='post-author__nickname'>
